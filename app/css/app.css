@@ -1,0 +1,50 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 7, ../sass/app.scss */
+#top-navbar .glyphicon-cog {
+  vertical-align: middle;
+  font-size: 16px;
+}
+
+/* line 20, ../sass/app.scss */
+.main-content .list-group .label {
+  margin-bottom: 3px;
+  display: inline-block;
+  margin-right: 3px;
+}
+/* line 30, ../sass/app.scss */
+.main-content .list-group-item-heading .glyphicon-thumbs-up {
+  float: right;
+}
+/* line 39, ../sass/app.scss */
+.main-content .list-group-item-success img {
+  display: block;
+}
+/* line 51, ../sass/app.scss */
+.main-content .list-group-item-success .question-info .glyphicon {
+  margin-left: 6px;
+}
+/* line 57, ../sass/app.scss */
+.main-content .list-group-item-success .visible-sm-block {
+  margin-bottom: 10px;
+}
+@media (min-width: 1200px) {
+  /* line 63, ../sass/app.scss */
+  .main-content .list-group-item-success .list-group-item-text {
+    margin-bottom: 12px;
+  }
+}
+@media (min-width: 992px) {
+  /* line 69, ../sass/app.scss */
+  .main-content .list-group-item-success .list-group-item-text {
+    margin-top: 10px;
+  }
+}
+@media (min-width: 768px) {
+  /* line 78, ../sass/app.scss */
+  .main-content .row {
+    margin-bottom: 20px;
+  }
+}
