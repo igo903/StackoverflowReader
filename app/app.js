@@ -10,7 +10,7 @@ angular.module('myApp', [
   'ngSanitize'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
+    $routeProvider.otherwise({ redirectTo: '/1' });
 }])
 
 .run(['sfService', function (sfService) {

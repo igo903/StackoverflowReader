@@ -29,24 +29,25 @@
 
 
 
-    .service('sfService', ['$q','$http','Key', function ($q, $http, Key) {
+    .factory('sfService', ['$q','$http','Key', function ($q, $http, Key) {
 
+        var sfService = {};
 
         /*
         初始化filter的值，
         stackExchange 有些值必须使用filter 才能够查出来
 
         */
-        var filterPromise = $http({
-            url: 'https://api.stackexchange.com/2.2/filters/create',
-            params: {
-                unsafe: false,
-                include: '.page;.page_size;.total;question.body;question.up_vote_count;question.comment_count',
-                key: Key
-            }
-        }).success(function (data) {
-            console.log(data);
-        });
+        //var filterPromise = $http({
+        //    url: 'https://api.stackexchange.com/2.2/filters/create',
+        //    params: {
+        //        unsafe: false,
+        //        include: '.page;.page_size;.total;question.body;question.up_vote_count;question.comment_count',
+        //        key: Key
+        //    }
+        //}).success(function (data) {
+        //    console.log(data);
+        //});
 
 
         /*
@@ -57,35 +58,50 @@
 
 
         */
-        this.getFilter = function () {
+        sfService.getFilter = function () {
 
-            return filterPromise.then(function (result) {
+            return $http({
+                url: 'https://api.stackexchange.com/2.2/filters/create',
+                params: {
+                    unsafe: false,
+                    include: '.page;.page_size;.total;question.body;question.up_vote_count;question.comment_count',
+                    key: Key
+                },
+                cache: true
+            })
+
+            .then(function (result) {
                  return result.data.items[0].filter;
             });
 
         };
 
+        //sfService.getFilter();
 
-        this.getQuestions = function () {
 
-            return this.getFilter().then(function (filter) {
+        sfService.getQuestions = function (input, page, pagesize) {
+
+            return sfService.getFilter().then(function (filter) {
                 return $http({
                     url: 'https://api.stackexchange.com/2.2/questions',
                     params: {
                         order: 'desc',
                         sort: 'activity',
-                        tagged: 'angularjs',
+                        //tagged: 'angularjs',
                         site: 'stackoverflow',
                         key: Key,
-                        filter: filter
+                        filter: filter,
+                        page: page,
+                        tagged: input,
+                        pagesize: pagesize
                     }
                 });
             });
 
-        }
+        };
 
 
-         
+        return sfService;
          
     }]);
 
