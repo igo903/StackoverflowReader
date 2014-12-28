@@ -8,43 +8,74 @@
   font-size: 16px;
 }
 
-/* line 20, ../sass/app.scss */
+/* line 14, ../sass/app.scss */
+.main-content {
+  position: relative;
+}
+/* line 18, ../sass/app.scss */
 .main-content .list-group .label {
   margin-bottom: 3px;
   display: inline-block;
   margin-right: 3px;
 }
-/* line 30, ../sass/app.scss */
+/* line 27, ../sass/app.scss */
 .main-content .list-group-item-heading .glyphicon-thumbs-up {
   float: right;
 }
-/* line 39, ../sass/app.scss */
+/* line 35, ../sass/app.scss */
 .main-content .list-group-item-success img {
   display: block;
+  max-width: 130px;
 }
-/* line 51, ../sass/app.scss */
+/* line 45, ../sass/app.scss */
 .main-content .list-group-item-success .question-info .glyphicon {
   margin-left: 6px;
 }
-/* line 57, ../sass/app.scss */
+/* line 50, ../sass/app.scss */
 .main-content .list-group-item-success .visible-sm-block {
   margin-bottom: 10px;
 }
 @media (min-width: 1200px) {
-  /* line 63, ../sass/app.scss */
+  /* line 56, ../sass/app.scss */
   .main-content .list-group-item-success .list-group-item-text {
     margin-bottom: 12px;
   }
 }
 @media (min-width: 992px) {
-  /* line 69, ../sass/app.scss */
+  /* line 62, ../sass/app.scss */
   .main-content .list-group-item-success .list-group-item-text {
     margin-top: 10px;
   }
 }
 @media (min-width: 768px) {
-  /* line 78, ../sass/app.scss */
+  /* line 70, ../sass/app.scss */
   .main-content .row {
     margin-bottom: 20px;
   }
+}
+
+/* line 78, ../sass/app.scss */
+.animate-show.ng-leave, .animate-show.ng-enter {
+  -webkit-transition: all linear 1.5s;
+  transition: all linear 1.5s;
+}
+/* line 83, ../sass/app.scss */
+.animate-show.ng-leave {
+  opacity: 1;
+}
+/* line 87, ../sass/app.scss */
+.animate-show.ng-enter {
+  opacity: 0;
+}
+/* line 91, ../sass/app.scss */
+.animate-show.ng-leave.ng-leave-active {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+}
+/* line 97, ../sass/app.scss */
+.animate-show.ng-enter.ng-enter-active {
+  opacity: 1;
+  position: absolute;
+  width: 100%;
 }

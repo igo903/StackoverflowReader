@@ -9,33 +9,33 @@
 
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <link href="css/app.css" rel="stylesheet" />
-    
-    <script src="bower_components/jquery/dist/jquery.js"></script>
+
+    <script src="bower_components/jquery/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <link href="api.stackexchange.com" rel="dns-prefetch" />
 </head>
-<body>
+<body ng-controller="mainCtrl">
 
     <nav class="navbar navbar-default" role="navigation">
 
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar">
+                <button type="button" class="navbar-toggle collapsed" ng-click="collapse()">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">StackOverflow questions</a>
+                <a class="navbar-brand" href="#/angularjs/1">StackOverflow questions</a>
             </div>
 
             <div class="collapse navbar-collapse row" id="top-navbar">
 
-                <form class="navbar-form navbar-right" role="search">
+                <form class="navbar-form navbar-right" role="search" ng-submit="searchKeyWords(); ">
                     <div class="form-group">
-                        <input type="search" class="form-control" placeholder="Search">
+                        <input type="search" class="form-control" placeholder="Search" ng-model="searchInputs" />
 
-                        <a class="btn btn-default hidden-xs">
+                        <a class="btn btn-default hidden-xs" ng-click="searchKeyWords()" >
                             <span class="glyphicon glyphicon-search"></span>
                         </a>
                     </div>
@@ -43,35 +43,37 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            默认排序
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                            {{sortBy}}
                             <span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
+                            <li><a href="javascript:;" ng-click="setSort('creation','最新发布')" >最新发布</a></li>
+                            <li><a href="javascript:;" ng-click="setSort('votes','得分')">得分</a></li>
+                            <li><a href="javascript:;" ng-click="setSort('hot','热门')" >热门</a></li>
                             <li class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
+                            <li><a href="javascript:;" ng-click="setSort('activity','最近更新（默认）')">最近更新（默认）</a></li>
                         </ul>
                     </li>
                 </ul>
 
-
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">ruby</a></li>
-                    <li><a href="#">javascript</a></li>
-                    <li><a href="#">angularjs</a></li>
-                    <li><a href="#">powershell</a></li>
-                    <li><a href="#">scss</a></li>
+                    <li ng-class="$routeParams.search == 'ruby' ? 'active': null" ><a href="#/ruby/1">ruby</a></li>
+                    <li ng-class="$routeParams.search == 'phonegap' ? 'active': null" ><a href="#/phonegap/1">phonegap</a></li>
+                    <li ng-class="$routeParams.search == 'angularjs' ? 'active': null" ><a href="#/angularjs/1">angularjs</a></li>
+                    <li ng-class="$routeParams.search == 'powershell' ? 'active': null" ><a href="#/powershell/1">powershell</a></li>
+                    <li ng-class="$routeParams.search == 'scss' ? 'active': null" ><a href="#/scss/1">scss</a></li>
                 </ul>
+
             </div>
+
         </div>
     </nav>
 
-
-    <div ng-view></div>
+    <div class="container main-content" >
+        <div ng-view ng-class="'animate-show'"></div>
+    </div>
 
 
     <!-- In production use:
@@ -80,7 +82,7 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
     <script src="app.js"></script>
     <script src="view1/view1.js"></script>
     <script src="view2/view2.js"></script>
@@ -88,5 +90,6 @@
     <script src="components/version/version.js"></script>
     <script src="components/version/version-directive.js"></script>
     <script src="components/version/interpolate-filter.js"></script>
+
 </body>
 </html>

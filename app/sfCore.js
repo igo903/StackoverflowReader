@@ -34,24 +34,7 @@
         var sfService = {};
 
         /*
-        初始化filter的值，
-        stackExchange 有些值必须使用filter 才能够查出来
-
-        */
-        //var filterPromise = $http({
-        //    url: 'https://api.stackexchange.com/2.2/filters/create',
-        //    params: {
-        //        unsafe: false,
-        //        include: '.page;.page_size;.total;question.body;question.up_vote_count;question.comment_count',
-        //        key: Key
-        //    }
-        //}).success(function (data) {
-        //    console.log(data);
-        //});
-
-
-        /*
-
+            stackExchange 有些值必须使用filter 才能够查出来
             从filterPromise 中
             获取 filter的值， 当filterPromise 执行完了之后 
             返回一个新的 promise，promise里 有 可以使用的 filter字符串
@@ -76,17 +59,15 @@
 
         };
 
-        //sfService.getFilter();
 
-
-        sfService.getQuestions = function (input, page, pagesize) {
+        sfService.getQuestions = function (input, page, pagesize, sort) {
 
             return sfService.getFilter().then(function (filter) {
                 return $http({
                     url: 'https://api.stackexchange.com/2.2/questions',
                     params: {
                         order: 'desc',
-                        sort: 'activity',
+                        sort: sort || 'activity',
                         //tagged: 'angularjs',
                         site: 'stackoverflow',
                         key: Key,
